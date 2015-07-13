@@ -1,0 +1,487 @@
+\documentclass[12pt,a4paper]{report}
+
+%% === CJK 套件 ===
+\usepackage{CJK,CJKnumb}                     % 中文套件
+%% === AMS 標準套件 ===
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % 數學符號
+%% === 章節內容 ===
+\usepackage{titletoc,titlesec}               % titletoc 目錄修改套件, titlesec 美化章節標題套件
+\usepackage{imakeidx}                        % 索引
+\usepackage{enumitem}
+%% ===  ===
+\usepackage[chapter]{algorithm}              % 演算法套件
+\usepackage[noend]{algpseudocode}            % pseudocode 套件
+\usepackage{listings}                        % 程式碼
+%% === TikZ 套件 ===
+\usepackage{tikz,tkz-graph,tkz-berge}        % 繪圖
+
+%\linespread{1.24}
+
+%% === 設定頁面格式 ===
+%\hoffset         = 10pt                      % 水平位移，預設為 0pt
+\voffset         = -15pt                     % 垂直位移，預設為 0pt
+\oddsidemargin   = 0pt                       % 預設為 31pt
+%\topmargin       = 20pt                      % 預設為 20pt
+%\headheight      = 12pt                      % header 的高度，預設為 12pt
+%\headsep         = 25pt                      % header 和 body 的距離，預設為 25pt
+\textheight      = 620pt                     % body 內文部分的高度，預設為 592pt
+\textwidth       = 450pt                     % body 內文部分的寬度，預設為 390pt
+%\marginparsep    = 10pt                      % margin note 和 body 的距離，預設為 10pt
+%\marginparwidth  = 35pt                      % margin note 的寬度，預設為 35pt
+%\footskip        = 30pt                      % footer 高度 + footer 和 body 的距離，預設為 30pt
+
+\newlist{optionlist}{enumerate}{1}
+\setlist[optionlist]{label=(\Alph*),before=\raggedright}
+\renewcommand{\thelstnumber}{\arabic{lstnumber}0}
+
+\begin{document}
+\begin{CJK}{UTF8}{bkai}
+
+%% === 常用的指令，替換成中文 ===
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\contentsname}{目~錄~}
+\renewcommand{\listfigurename}{插~圖~目~錄}
+\renewcommand{\listtablename}{表~格~目~錄}
+\renewcommand{\appendixname}{附~錄}
+%\renewcommand{\refname}{參~考~資~料}    % article
+\renewcommand{\bibname}{參~考~文~獻}     % book
+\renewcommand{\indexname}{索~引}
+\renewcommand{\today}{\number\year~年~\number\month~月~\number\day~日}
+%\newcommand{\zhtoday}{\CJKdigits{\the\year}年\CJKnumber{\the\month}月\CJKnumber{\the\day}日}
+
+\title{九十二學年度台灣省高中資訊學科能力競賽筆試\\(三重高中賽區)}
+\date{}
+\maketitle
+
+\begin{enumerate}
+\item ${(10101101)}_2$ 的十進位表示法為
+  \begin{optionlist}
+  \item 137
+  \item 173\label{north-92-a1}
+  \item 189
+  \item 254
+  \end{optionlist}
+\item 人工智慧的課題中，能讓電腦自動了解一段文字意義是
+  \begin{optionlist}
+  \item 語音處理
+  \item 自然語言\label{north-92-a2}
+  \item 影像處理
+  \item 專家系統
+  \end{optionlist}
+\item 電腦記憶體在儲存數值資料時通常會以有限的位元來表示，故數值資料在儲存時會受到限制。當要儲存數值太小時，就會有何種錯誤現象？
+  \begin{optionlist}
+  \item 溢位 (Overflow)
+  \item 虧位 (Underflow)\label{north-92-a3}
+  \item 捨入誤差 (Round-off)
+  \item 捨去誤差 (Truncation)
+  \end{optionlist}
+\item 下列何者如果運用不當則可能造成永無止盡的執行而無法正常結束？
+  \begin{optionlist}
+  \item 迴圈 (Loops)\label{north-92-a4}
+  \item 循序 (Sequence)
+  \item 判斷 (Conditional)
+  \item 以上皆是
+  \end{optionlist}
+\item 如果以泡沫排序法 (Bubble Sort) 來將數串 (20, 7, 18, 24, 3, 10, 15, 8) 由大排到小，則共要幾次數字對調 (Swap) 方可完成？
+  \begin{optionlist}
+  \item 8 次
+  \item 9 次
+  \item 10 次
+  \item 11 次\label{north-92-a5}
+  \end{optionlist}
+\item 下列何種資料結構的資料存取方式是先進後出？
+  \begin{optionlist}
+  \item 堆疊 (Stack)\label{north-92-a6}
+  \item 佇列 (Queue)
+  \item 陣列 (Array)
+  \item 以上皆非
+  \end{optionlist}
+\item 下列何者不相等？
+  \begin{optionlist}
+  \item ${(79)}_{10}$
+  \item ${(4F)}_{16}$
+  \item ${(127)}_{8}$\label{north-92-a7}
+  \item ${(1001111)}_{2}$
+  \end{optionlist}
+\item 下列何者為影像儲存格式？
+  \begin{optionlist}
+  \item XML
+  \item HTML
+  \item DOC
+  \item JPEG\label{north-92-a8}
+  \end{optionlist}
+\item 中央處理單元已包含下列哪一種單元？
+  \begin{optionlist}
+  \item 匯流排 (Bus)
+  \item 輸出單元 (Output Unit)
+  \item 算術邏輯單元 (ALU)	\label{north-92-a9}
+  \item 以上皆是
+  \end{optionlist}
+\item 一套小說涵蓋了 12 冊書本，每一本書大約有 100,000 個中文字，如果以容量為 1.44 MB 的磁片來儲存整套書的文字，則需要幾片磁片？
+  \begin{optionlist}
+  \item 2 片	\label{north-92-a10}
+  \item 3 片
+  \item 4 片	
+  \item 5 片
+  \end{optionlist}
+\item 給定 2048 筆數字資料存在一個陣列中，先用泡沫排序法 (Bubble Sort) 由小至大排序，再用二分法搜尋 "148" 是否存在於陣列中，則最多需比較幾次就可判定 "148" 是否存在？
+  \begin{optionlist}
+  \item 9 次	
+  \item 10 次
+  \item 11 次
+  \item 12 次\label{north-92-a11}
+  \end{optionlist}
+\item 同上，如果要搜尋的資料為 "2578"，則哪一種搜尋法會最快找到資料？
+  \begin{optionlist}
+  \item 循序搜尋法
+  \item 二分法
+  \item 亂數搜尋法
+  \item 以上皆有可能\label{north-92-a12}
+  \end{optionlist}
+\item 下列何種語言是使用一些有意義的英文字母及符號，來表達某一命令或資料的符號語言？
+  \begin{optionlist}
+  \item 中階語言
+  \item 高階語言
+  \item 組合語言\label{north-92-a13}
+  \item 機器語言
+  \end{optionlist}
+\item 下列何者是由一群 0 與 1 所編寫而成的語言？
+  \begin{optionlist}
+  \item 機器語言\label{north-92-a14}
+  \item 高階語言
+  \item 組合語言
+  \item 自然語言
+  \end{optionlist}
+\item 有關算術運算符號執行的優先順序，下列何者正確？
+  \begin{optionlist}
+  \item \texttt{()\^{}/*}\label{north-92-a15}
+  \item \texttt{\^{}()/-}
+  \item \texttt{()-\^{}/}
+  \item \texttt{()\^{}-/}
+  \end{optionlist}
+\item 若 $X=5, Y=6, Z=6$，則下列何者正確？
+  \begin{optionlist}
+  \item $Y >= X$\label{north-92-a16}
+  \item $Z <= X$
+  \item $X > Y$
+  \item $Y <> Z$
+  \end{optionlist}
+\item 下列有關字串的比較，何者正確？
+  \begin{optionlist}
+  \item \texttt{"CAT" > "DOG"}
+  \item \texttt{"SHE" > "SH"}\label{north-92-a17}
+  \item \texttt{"123" > "123 "}
+  \item \texttt{"BASIC" < "APPLE"}
+  \end{optionlist}
+\item 下列何者在網路環境用來做為檔案傳輸服務？
+  \begin{optionlist}
+  \item BBS
+  \item E-mail
+  \item FTP\label{north-92-a18}
+  \item WWW
+  \end{optionlist}
+\item 有關 MPEG 影像壓縮技術下列敘述何者正確？
+  \begin{optionlist}
+  \item 不失真
+  \item 只能使用硬體達成
+  \item 經過處理的影像所佔容量變小\label{north-92-a19}
+  \item 使用軟體模擬比硬體有效率
+  \end{optionlist}
+\item 下列哪一種不是聲音檔？
+  \begin{optionlist}
+  \item wav
+  \item mid
+  \item mp3
+  \item jpg\label{north-92-a20}
+  \end{optionlist}
+\item 在網際網路環境中所採用的通訊協定 (protocol) 為
+  \begin{optionlist}
+  \item NETBUI
+  \item IPX
+  \item TCP/IP\label{north-92-a21}
+  \item DHLC
+  \end{optionlist}
+\item 以 28800 BPS 的傳輸速率傳送 1.44 Mbytes 的資料約需多少時間？
+  \begin{optionlist}
+  \item 50 秒\label{north-92-a22}
+  \item 200 秒
+  \item 400 秒
+  \item 2000 秒
+  \end{optionlist}
+\item 電腦關機也不會使程式消失的記憶體是：
+  \begin{optionlist}
+  \item RAM
+  \item ROM\label{north-92-a23}
+  \item CACHE RAM
+  \item SRAM
+  \end{optionlist}
+\item 高度為 N 的二元樹 (根節點的高度為 1)，最多能有幾個節點？
+  \begin{optionlist}
+  \item N!
+  \item logN + N
+  \item N(N-1)/2
+  \item 2\^{}N – 1\label{north-92-a24}
+  \end{optionlist}
+\item 數值 2 2 * 8 4 / 3 * + 以後序 (postorder) 方式表示時等於：
+  \begin{optionlist}
+  \item 10\label{north-92-a25}
+  \item 12
+  \item 19.3
+  \item 15
+  \end{optionlist}
+\item 把 A, B, C 依序壓入一個堆疊中，再以任意次序彈出，則下列何種彈出次序\underline{\textbf{不可能}}出現？
+  \begin{optionlist}
+  \item BAC
+  \item CAB\label{north-92-a26}
+  \item ABC
+  \item CBA
+  \end{optionlist}
+\item 一部相機有 300 萬畫素是指感光元件具有 300 萬個感光單元，通常一般家庭影像使用，300 萬畫素已經足夠。請問感光元件的英文縮寫為何？
+  \begin{optionlist}
+  \item SM
+  \item CCD\label{north-92-a27}
+  \item SD
+  \item MMC
+  \end{optionlist}
+\item 如果有一台數位相機，他的照片解析度設為 2048*1536，照出來的相片經過壓縮技術 (約可將檔案壓為本來的 1/10 大小)，請問如果他有一張 64MB 的記憶卡，其可拍攝的最多張數約為幾張？
+  \begin{optionlist}
+  \item 70 張\label{north-92-a28}
+  \item 140 張
+  \item 280 張
+  \item 300 張
+  \end{optionlist}
+\item 我們在選購顯示卡 (Video Adapter) 的時候，假設你想要你的的顯示卡可以顯示 1024 x 768 的解析度和 32 bit 顏色的話﹐附於你的顯示卡的記憶體至少要多大？
+  \begin{optionlist}
+  \item 1 MB
+  \item 1.5 MB
+  \item 2 MB
+  \item 3 MB\label{north-92-a29}
+  \end{optionlist}
+\item 現在政府有推廣無障礙網頁的計劃，主要內容是考慮到許多障別的人，例如：聽障、視障，希望盡量減少他們在瀏覽網頁的障礙，其中考量到視障的人沒有辦法直接看到網頁內容，所以希望網頁設計者在設計網頁時可以加上圖片的說明文字，請問可以利用以下那個 html 標籤替圖片加上說明文字？
+  \begin{optionlist}
+  \item meta
+  \item alt\label{north-92-a30}
+  \item p
+  \item tr
+  \end{optionlist}
+\item 一個完整的檔案名稱是由一個主檔名及一個副檔名所組合而成，而副檔名的功能則是讓作業系統知道該檔案的類型，請問一下副檔名「AVI」是代表什麼檔案類型？
+  \begin{optionlist}
+  \item 多媒體影音檔\label{north-92-a31}
+  \item 資料備份檔
+  \item 系統的執行檔
+  \item 圖示檔
+  \end{optionlist}
+\item CPU 中的暫存器主要是提供給算術邏輯單元在執行時，暫時存放資料的地方，請問一下程式計數器的功能是什麼？
+  \begin{optionlist}
+  \item 提供一個可以儲存邏輯運算單元運算結果的地方。
+  \item 用來存放 CPU 的時脈。
+  \item 用來儲存從記憶體所取來將要執行的指令。
+  \item 用來存放下一個即將要執行的指令位址。\label{north-92-a32}
+  \end{optionlist}
+\item 當多元處理作業系統 (Multiprocessing Operation System) 處於平行作業方式時，至少會有幾個 CPU 同時在處理指令運算？
+  \begin{optionlist}
+  \item 1
+  \item 2\label{north-92-a33}
+  \item 3
+  \item 4
+  \end{optionlist}
+\item BIOS (基本輸入輸出系統) 通常儲存於下列何種記憶體中？
+  \begin{optionlist}
+  \item 光碟
+  \item 硬碟
+  \item ROM\label{north-92-a34}
+  \item RAM
+  \end{optionlist}
+\item 如果有一個檔案他的副檔名為「ZIP」，請問你可以使用何種軟體將他解壓縮？
+  \begin{optionlist}
+  \item Internet Explore
+  \item Winzip\label{north-92-a35}
+  \item FrontPage
+  \item CuteFTP
+  \end{optionlist}
+\item 下列敘述何者有誤？
+  \begin{optionlist}
+  \item MP3 為 MPEG 1 中制定的音訊壓縮格式
+  \item 以 MP3 格式儲存壓縮率可達到 1:10
+  \item 音訊以 MP3 格式儲存完全不失真\label{north-92-a36}
+  \item MP3 適合做為音訊資料提供網路下載的儲存格式
+  \end{optionlist}
+\item 下列敘述何者正確？
+  \begin{optionlist}
+  \item 採用 ADSL 上網時電腦不需要有網路卡
+  \item 網路卡的主要功能為處理數位訊息的包裝和收發\label{north-92-a37}
+  \item 網路卡的主要功能為電話網路的撥接工作
+  \item 網路卡的主要功能為執行瀏覽器
+  \end{optionlist}
+\item 當進行網路交易時，若在所有交易程序完成前網路中斷造成交易不完全的資料錯誤，以下何種技術可將資料回復到交易前的狀態？
+  \begin{optionlist}
+  \item 網路傳輸格式
+  \item 資料查詢處理方法
+  \item 資料加密機制
+  \item 資料交易管理機制\label{north-92-a38}
+  \end{optionlist}
+\item 有 N 筆資料，若以泡沫排序演算法將其由大排到小，則最差的情況下需多少次資料位置交換的動作才能完成排序？
+  \begin{optionlist}
+  \item $N$
+  \item $2N$
+  \item $N(N-1)/2$\label{north-92-a39}
+  \item $N^2$
+  \end{optionlist}
+\item 假設有一串已排序好的數列，欲從此數列中以二分搜尋法找到 40 這個數目，請問以下哪一個不可能是搜尋過程中比較的數目順序？
+  \begin{optionlist}
+  \item 53, 12, 33, 40
+  \item 12, 33, 53, 40
+  \item 12, 53, 33, 40
+  \item 33, 12, 53, 40\label{north-92-a40}
+  \end{optionlist}
+\item 根據以下之 BASIC 程式
+  \begin{lstlisting}[language={[Visual]Basic}]
+M=0
+FOR I=0 TO 5
+FOR J=I TO 20-I*3
+M=M+1
+NEXT J: NEXT I
+PRINT M
+  \end{lstlisting}
+  程式執行後會印出
+  \begin{optionlist}
+  \item 36
+  \item 40
+  \item 60
+  \item 66\label{north-92-a41}
+  \end{optionlist}
+\item \label{north-92-p42} 給一個樹狀結構，其根節點為第一層，除了葉節點沒有子節點外，每個節點皆有兩個子節點，且葉節點全部在第 N 層 ($N\geq{2}$)。將該樹中的節點由上層而下層，同一層由左而右依序編號 (根節點由 1 開始編號)。請問第 K 層，由左而右第 L 個位置的節點編號為何？
+  \begin{optionlist}
+  \item $2^{K}+L-1$
+  \item $2^{K-1}+L-1$\label{north-92-a42}
+  \item $K*2+L$
+  \item $2^{L-1}+K-1$
+  \end{optionlist}
+\item \label{north-92-p43} 續題 \ref{north-92-p42}，若除了葉節點外每個節點皆有 3 個子節點，而編號規則同上題，則知一個編號為 M 的節點，其父節點的編號為何？
+  \begin{optionlist}
+  \item M 除 3 取商
+  \item M 除 3 取四捨五入\label{north-92-a43}
+  \item M 除 3 取無條件進入
+  \item M 除 3 取餘數
+  \end{optionlist}
+\item 續題 \ref{north-92-p43}，若此樹狀結構中每個節點位置只記錄在其父節點，欲以此編號順序走訪此樹狀構中每個節點，走訪過程中需以何種資料結構輔助暫存節點資料最合適？
+  \begin{optionlist}
+  \item 佇列 (Queue)\label{north-92-a44}
+  \item 堆疊 (Stack)
+  \item 多維陣列 (Multi-dimension Array)
+  \item 雙向串列 (Double Linked-list)
+  \end{optionlist}
+\item TCP/IP 是一種
+  \begin{optionlist}
+  \item 程式語言
+  \item 作業系統
+  \item 網路設備
+  \item 通訊協定\label{north-92-a45}
+  \end{optionlist}
+\item 以一個堆疊儲存字元資料，若針對此堆疊進行以下處理程序：PUSH(R), PUSH(E), PUSH(T), PUSH(E), POP, PUSH(S), PUSH(O), PUSH(O), PUSH(E), POP, POP, POP, PUSH(T), POP, POP, POP 則在下一次 POP 會取出什麼字元？
+  \begin{optionlist}
+  \item E\label{north-92-a46}
+  \item S
+  \item T
+  \item R
+  \end{optionlist}
+\item ${1127}_{8}-{272}_{8}$ 的值等於以下何者？
+  \begin{optionlist}
+  \item ${100011101}_{2}$
+  \item ${110011110}_{2}$
+  \item ${19D}_{16}$\label{north-92-a47}
+  \item ${411}_{10}$
+  \end{optionlist}
+\item 以下何種介面卡的主要目的是用來播放影音光碟片 (VCD)？
+  \begin{optionlist}
+  \item MPEG\label{north-92-a48}
+  \item SCSI
+  \item SVGA
+  \item Rs-232c
+  \end{optionlist}
+\item 有 N 台電腦欲互相以網路線連通，若要求不會因一條網路線故障即造成互不相通的情況，請問最少共需要幾條網路線連接這些電腦？
+  \begin{optionlist}
+  \item N-1
+  \item N\label{north-92-a49}
+  \item N(N-1)/2
+  \item 2N
+  \end{optionlist}
+\item 分別執行以下四段程式，共會顯示幾種不同的 SUM 值？
+  \begin{multicols}{2}
+    \begin{lstlisting}[language={[Visual]Basic},numbers=left,title=$\langle$程式 1$\rangle$]
+SUM = 0
+FOR I = 0 TO 10
+  SUM = SUM + I * 2
+NEXT I
+PRINT SUM
+    \end{lstlisting}
+    \begin{lstlisting}[language={[Visual]Basic},numbers=left,title=$\langle$程式 2$\rangle$]
+I = 0 : SUM = 0
+WHILE I < 20
+  SUM = SUM + I + 2
+  I = I + 2
+WEND
+    \end{lstlisting}
+  \end{multicols}
+  \begin{multicols}{2}
+    \begin{lstlisting}[language={[Visual]Basic},numbers=left,title=$\langle$程式 3$\rangle$]
+I = 0 : SUM = 0
+WHILE I <= 20
+  I = I + 2
+  SUM = SUM + I
+WEND
+PRINT SUM
+    \end{lstlisting}
+    \begin{lstlisting}[language={[Visual]Basic},numbers=left,title=$\langle$程式 4$\rangle$]
+I = 0 : SUM = 0
+IF I > 19 THEN GOTO 60
+  I = I + 2
+  SUM = SUM + I
+  GOTO 20
+PRINT SUM
+    \end{lstlisting}
+  \end{multicols}
+  \begin{optionlist}
+  \item 1
+  \item 2\label{north-92-a50}
+  \item 3
+  \item 4
+  \end{optionlist}
+\end{enumerate}
+
+\newpage
+
+\section*{參考答案}
+
+\begin{table}[h]
+  \center
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  題號 & 答案 & 題號 & 答案 & 題號 & 答案 & 題號 & 答案 & 題號 & 答案\\
+  \hline\hline
+  \textbf{1}  & \ref{north-92-a1} & \textbf{2}  & \ref{north-92-a2} & \textbf{3}  & \ref{north-92-a3} & \textbf{4}  & \ref{north-92-a4} & \textbf{5}  & \ref{north-92-a5}\\
+  \hline
+  \textbf{6}  & \ref{north-92-a6} & \textbf{7}  & \ref{north-92-a7} & \textbf{8}  & \ref{north-92-a8} & \textbf{9}  & \ref{north-92-a9} & \textbf{10} & \ref{north-92-a10}\\
+  \hline
+  \textbf{11} & \ref{north-92-a11} & \textbf{12} & \ref{north-92-a12} & \textbf{13} & \ref{north-92-a13} & \textbf{14} & \ref{north-92-a14} & \textbf{15} & \ref{north-92-a15}\\
+  \hline
+  \textbf{16} & \ref{north-92-a16} & \textbf{17} & \ref{north-92-a17} & \textbf{18} & \ref{north-92-a18} & \textbf{19} & \ref{north-92-a19} & \textbf{20} & \ref{north-92-a20}\\
+  \hline
+  \textbf{21} & \ref{north-92-a21} & \textbf{22} & \ref{north-92-a22} & \textbf{23} & \ref{north-92-a23} & \textbf{24} & \ref{north-92-a24} & \textbf{25} & \ref{north-92-a25}\\
+  \hline
+  \textbf{26} & \ref{north-92-a26} & \textbf{27} & \ref{north-92-a27} & \textbf{28} & \ref{north-92-a28} & \textbf{29} & \ref{north-92-a29} & \textbf{30} & \ref{north-92-a30}\\
+  \hline
+  \textbf{31} & \ref{north-92-a31} & \textbf{32} & \ref{north-92-a32} & \textbf{33} & \ref{north-92-a33} & \textbf{34} & \ref{north-92-a34} & \textbf{35} & \ref{north-92-a35}\\
+  \hline
+  \textbf{36} & \ref{north-92-a36} & \textbf{37} & \ref{north-92-a37} & \textbf{38} & \ref{north-92-a38} & \textbf{39} & \ref{north-92-a39} & \textbf{40} & \ref{north-92-a40}\\
+  \hline
+  \textbf{41} & \ref{north-92-a41} & \textbf{42} & \ref{north-92-a42} & \textbf{43} & \ref{north-92-a43} & \textbf{44} & \ref{north-92-a44} & \textbf{45} & \ref{north-92-a45}\\
+  \hline
+  \textbf{46} & \ref{north-92-a46} & \textbf{47} & \ref{north-92-a47} & \textbf{48} & \ref{north-92-a48} & \textbf{49} & \ref{north-92-a49} & \textbf{50} & \ref{north-92-a50}\\
+  \hline
+  \end{tabular}
+\end{table}
+
+\end{CJK}
+\end{document}
