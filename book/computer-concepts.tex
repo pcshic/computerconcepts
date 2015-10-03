@@ -1,0 +1,371 @@
+\documentclass[12pt,a4paper,oneside]{book}
+\def \allfiles {}
+
+%% === CJK 套件 ===
+\usepackage{CJK,CJKnumb}                     % 中文套件
+%% === AMS 標準套件 ===
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % 數學符號
+%% === 章節內容 ===
+\usepackage{titletoc,titlesec}               % titletoc 目錄修改套件, titlesec 美化章節標題套件
+\usepackage{imakeidx}                        % 索引
+%% ===  ===
+\usepackage[chapter]{algorithm}              % 演算法套件
+\usepackage[noend]{algpseudocode}            % pseudocode 套件
+\usepackage{listings}                        % 程式碼
+%% === TikZ 套件 ===
+\usepackage{tikz,tkz-graph,tkz-berge}        % 繪圖
+
+\linespread{1.24}
+
+%% === 設定頁面格式 ===
+%\hoffset         = 10pt                      % 水平位移，預設為 0pt
+\voffset         = -15pt                     % 垂直位移，預設為 0pt
+\oddsidemargin   = 0pt                       % 預設為 31pt
+%\topmargin       = 20pt                      % 預設為 20pt
+%\headheight      = 12pt                      % header 的高度，預設為 12pt
+%\headsep         = 25pt                      % header 和 body 的距離，預設為 25pt
+\textheight      = 620pt                     % body 內文部分的高度，預設為 592pt
+\textwidth       = 450pt                     % body 內文部分的寬度，預設為 390pt
+%\marginparsep    = 10pt                      % margin note 和 body 的距離，預設為 10pt
+%\marginparwidth  = 35pt                      % margin note 的寬度，預設為 35pt
+%\footskip        = 30pt                      % footer 高度 + footer 和 body 的距離，預設為 30pt
+
+\makeindex[name=noun]        % 索引生成
+
+\begin{document}
+\begin{CJK}{UTF8}{bkai}
+
+%% === 常用的指令，替換成中文 ===
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\contentsname}{目~錄~}
+\renewcommand{\listfigurename}{插~圖~目~錄}
+\renewcommand{\listtablename}{表~格~目~錄}
+\renewcommand{\appendixname}{附~錄}
+%\renewcommand{\refname}{參~考~資~料}    % article
+\renewcommand{\bibname}{參~考~文~獻}     % book
+\renewcommand{\indexname}{索~引}
+\renewcommand{\today}{\number\year~年~\number\month~月~\number\day~日}
+%\newcommand{\zhtoday}{\CJKdigits{\the\year}年\CJKnumber{\the\month}月\CJKnumber{\the\day}日}
+
+%% === 
+\floatname{algorithm}{演算法}
+
+%% ===
+\setcounter{secnumdepth}{3}                                 %　設定計數到 subsubsection
+\renewcommand{\thepart}{第\CJKnumber{\arabic{part}}部分}
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thesection}{\arabic{section}}                % 改 section 為 1, 2, 3 非 1.1, 1.2, 1.3
+\renewcommand{\thesubsection}{\arabic{subsection}}          % subsection 也改一改
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}    % subsubsection 也改一改
+
+%% === 設定章節標題 (配合 titlesec) ===
+\titleformat{\part}[display]
+	{\center\huge\bfseries}
+	{\thepart}
+	{1em}
+	{\Huge}
+%
+\titleformat{\chapter}[display]
+	{\bf\Large}
+	{第~\CJKnumber{\thechapter}~章}
+	{1ex}
+	{\Huge}
+	[\vspace{2ex}]
+%
+\titleformat{\section}{\Large\bfseries}{第\CJKnumber{\thesection}節}{1em}{}
+%
+\titleformat{\subsection}{\large\bfseries}{\CJKnumber{\thesubsection}、}{0.5em}{}
+%
+\titleformat{\subsubsection}{\bfseries}{(\CJKnumber{\thesubsubsection})}{0.5em}{}
+% \titlespacing{\subsubsection}{0pt}{5pt}{-10pt}
+
+%% === 設定目錄標題 (配合 titletoc) ===
+\titlecontents{part}[0em]
+{\center\Large}
+{}
+{}
+{}
+%
+\titlecontents{chapter}[0em]
+{}
+{\large\bf{第\CJKnumber{\thecontentslabel}章~~}}
+{}{~~\titlerule*{.}\bf\contentspage}
+%
+\titlecontents{section}[4em]
+{}
+{第\CJKnumber{\thecontentslabel}節\quad}
+{}{~~\titlerule*{.} \contentspage}
+%
+\titlecontents{subsection}[8em]
+{}
+{\CJKnumber{\thecontentslabel}、}
+{}{~~\titlerule*{.} \contentspage}
+
+%% === 定義 ===
+\newtheorem{myrule}{\begin{CJK}{UTF8}{bkai}原理\end{CJK}}[section]
+\newtheorem{mythm}{\begin{CJK}{UTF8}{bkai}定理\end{CJK}}[section]
+\newtheorem{mydef}{\begin{CJK}{UTF8}{bkai}定義\end{CJK}}[section]
+\newtheorem*{mydef*}{\begin{CJK}{UTF8}{bkai}定義\end{CJK}}
+\newtheorem{mypropo}{\begin{CJK}{UTF8}{bkai}性質\end{CJK}}[section]
+\newtheorem{myquest}{\begin{CJK}{UTF8}{bkai}例題\end{CJK}}[section]
+\newtheorem{myexe}{\begin{CJK}{UTF8}{bkai}練習題\end{CJK}}[subsection]
+\numberwithin{equation}{section}
+\renewenvironment{proof}{\begin{CJK}{UTF8}{bkai}\textbf{證明}\end{CJK}}{\qed}
+\newenvironment{mysol}{\begin{CJK}{UTF8}{bkai}\textbf{解答}\end{CJK}}{\qed}
+
+\title{Computer Concepts\\計算機概論}
+\author{許胖}
+\maketitle
+\tableofcontents
+
+\chapter{導論}
+
+\section{基礎知識}
+
+\subsection{單位前綴}
+
+\paragraph{}\textbf{單位前綴}：幾乎所有的單位都是由「\textbf{前綴}」和「\textbf{單位}」本身所組成的，例如：毫米 (mm, millimeter)、千瓦 (kw, kilowatt)、奈秒 (ns, nanosecond)、...等等。下表列出常用的單位前綴：
+
+\begin{table}[h!]
+\centering
+\label{tbl:unit-prefix}
+\begin{tabular}{|llll|llll|}
+\hline
+前綴    & 英文縮寫 & 中文縮寫 & 數值   & 前綴    & 英文縮寫 & 中文縮寫 & 數值    \\
+\hline
+yotta & Y    & 佑    & $10^{24}$ & yocto & y    & 攸    & $10^{-24}$\\
+zetta & Z    & 皆    & $10^{21}$ & zepto & z    & 介    & $10^{-21}$\\
+exa   & E    & 艾    & $10^{18}$ & atto  & a    & 阿    & $10^{-18}$\\
+peta  & P    & 拍    & $10^{15}$ & femto & f    & 飛    & $10^{-15}$\\
+tera  & T    & 兆    & $10^{12}$ & pico  & p    & 皮    & $10^{-12}$\\
+giga  & G    & 吉    & $10^{9}$  & nano  & n    & 奈    & $10^{-9}$\\
+mega  & M    & 百萬  & $10^{6}$  & micro & $\mu$& 微    & $10^{-6}$\\
+kilo  & k    & 千    & $10^{3}$  & milli & m    & 毫    & $10^{-3}$\\
+\hline
+\end{tabular}
+\caption{單位前綴表}
+\end{table}
+
+\subsection{常用單位}
+\subsubsection{資料儲存的單位}
+\begin{itemize}
+\item \textbf{位元} (b, bit)：：只能儲存一個 0 或 1，是電腦最小的儲存單位。
+\item \textbf{位元組} (B, byte)：1 位元組 = 8 位元，\textbf{資料處理及定址最小單位}。
+\item 字組 (W, word)：1 字組 = 2 Bytes，可以用來表示\textbf{中文字元}。
+\item 單位換算：電腦以 2 進位來表示，因此前綴就取最靠近 1000 倍，但是同為 2 的冪次的數字，因此取 $ 2^{10} = 1024$ 倍。
+  \begin{enumerate}
+  \item 1 kilobytes \textbf{(1 KB)} = $2^{10}$ Bytes $\approx$ $10^{3}$ Bytes。
+  \item 1 megabytes \textbf{(1 MB)} = $2^{20}$ Bytes $\approx$ $10^{6}$ Bytes。
+  \item 1 gigabytes \textbf{(1 GB)} = $2^{30}$ Bytes $\approx$ $10^{9}$ Bytes。
+  \item 1 terabytes \textbf{(1 TB)} = $2^{40}$ Bytes $\approx$ $10^{12}$ Bytes。
+  \end{enumerate}
+
+\begin{figure}[h!]
+  \centering
+  \label{fig:hobbyte}
+  \includegraphics[scale=0.5]{img/hobbit_hobbyte.jpg}
+  \caption{位元和位元組 (大誤)}
+\end{figure}
+
+\item 某些場合中，1 KB 被視為 1000 Bytes，原因是要符合國際前綴，因此我們把 1024 Bytes 另外標示為 \textbf{1 KiB}，其他以此類推。舉例：
+  \begin{itemize}
+  \item 1 TB 的硬碟，往往代表 1000 GB，因此照著這個邏輯，我們可以知道這個硬碟的真實容量是
+    \begin{align*}
+      {1\text{ TB}}\times{1000\text{ GB}\over\text{TB}}\times{1000\text{ MB}\over\text{GB}}\times{1000\text{ KB}\over\text{MB}}\times{1000\text{ Bytes}\over\text{KB}}&=10^{12}\text{ Bytes}\\
+      {10^{12}\text{ Bytes}}\times{1\text{ KiB}\over{1024\text{ Bytes}}}\times{1\text{ MiB}\over{1024\text{ KiB}}}\times{1\text{ GiB}\over{1024\text{ MiB}}}&\approx{}931.3\text{ GiB}
+    \end{align*}
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{資料傳輸速率}
+\begin{itemize}
+\item bps (bits per second)：亦即每秒傳輸多少\textbf{位元}的資料。
+\item 1 Kbps = $2^{10}$ bps $\approx$ $10^{3}$ bps。
+\item 1 Mbps = $2^{20}$ bps $\approx$ $10^{6}$ bps。
+\item 1 Gbps = $2^{30}$ bps $\approx$ $10^{9}$ bps。
+\end{itemize}
+
+\subsubsection{列印速度單位}
+\begin{itemize}
+\item CPM (character per minute)：每分鐘可列印字數。
+\item LPM (line per minute)：每分鐘可列印行數。
+\item PPM (page per minute)：每分鐘可列印頁數。
+\end{itemize}
+
+\subsubsection{列印密度/解析度單位}
+\begin{itemize}
+\item \textbf{pixel = 像素 = 畫素 = 圖素} = picture element (圖像元素)
+  \begin{enumerate}
+  \item 圖像顯示的基本單位
+  \item 有 RGB、CMYK 兩種
+  \end{enumerate}
+\item DPI (dot per inch)：每英吋列印多少點數，\textbf{列印設備解析度}。
+\item PPI (pixel per inch)：每英吋有多少像素，\textbf{數位顯示解析度}。
+\end{itemize}
+
+\subsection{資料處理}
+
+\begin{itemize}
+\item \textbf{資料} (Data)：未經處理之原始數據、文字等。是客觀的事實，沒有任何判斷或前後關聯。
+\item \textbf{資訊} (Information)：將原始資料經過一系列有計畫的處理後所得到的有用訊息。
+\item \textbf{資料處理} (DP, Data Processing)：將資料轉換為資訊的過程。依處理方式可分為兩類：
+  \begin{enumerate}
+  \item 人工資料處理
+  \item 電子資料處理 (EDP, Electronic Data Processing)
+  \end{enumerate}
+\item 資料處理的方式：
+  \begin{enumerate}
+  \item \textbf{線上處理} (On-line Processing)：將資料送去伺服器處理，最後再傳回結果。
+    \begin{itemize}
+    \item 即時處理 (Real-time Processing)：接到需求立即處理。例：ATM、衛星導航。
+    \item 分時處理 (Time-sharing Processing)：多台終端連線至伺服器，其 CPU 輪流處理每位使用者的指令。
+    \item 分散式資料處理 (DDP, Distribution Data Processing)：將資料分散在許多電腦處理，可提升整體效率。
+    \end{itemize}
+  \item \textbf{離線處理} (Off-line Processing)：不需要經由連線，在本地端進行相關的資料處理動作。
+  \item \textbf{批次處理} (Batch Processing)：將性質相同的工作累積起來做一次處理。
+  \end{enumerate}
+\end{itemize}
+
+\section{計算機發展史}
+
+\subsection{重要的里程碑}
+
+\paragraph{}這部分有點印象就好了，除了強調部分尚屬重要常識需要注意之外，其他不用強記。
+
+\subsubsection{早期計算工具}
+\begin{itemize}
+\item 西元前 2700 年至 3200 年左右，巴比倫已有使用\textbf{算盤}的紀錄。
+\item 西元元年前後，希臘人發明\textbf{安提基特拉機械} (Antikythera mechanism)。
+\item 西元 1623 年，施卡德 (Schickard) 發明史上第一個\textbf{機械式計算器}。
+\item 西元 1633 年，威廉‧奧特雷德(William Oughtred)發明圓算尺，是日後計算尺的前身。
+\item 西元 1642 年，布萊茲‧帕斯卡 (Blaise Pascal) 發明了\textbf{滾輪式加法器} (Pascaline)。
+\end{itemize}
+
+\subsubsection{打孔卡片 (1801 - 1970 年代)}
+\begin{itemize}
+\item 西元 1801 年，法國織布工人約瑟夫·瑪麗·雅卡爾 (Joseph Marie Jacquard) 發明能用不同\textbf{打孔卡片}控制編織圖案的織布機。
+\item 西元 1822 年，英國數學家\textbf{查爾斯·巴貝奇} (Charles Babbage) 提出\textbf{差分機}的構想，但未真正完成 (於 1842 年宣告中止)。
+\item 西元 1837 年，巴貝奇轉而建造用途更廣的分析機亦失敗，但分析機已經有現代電腦的基本結構。
+\item 西元 1890 年，美國科學家何樂利 (Hollerith) 以打孔卡片處理人口普查，在兩年半內完成這項工作。何樂利在 1896 年成立 Tabulating Machine Company，是後來國際商業機器公司 (IBM) 的前身。
+\end{itemize}
+
+\subsubsection{真空管時期 (1942 - 1946)}
+\begin{itemize}
+\item 西元 1942 年，美國愛荷華州立大學的阿塔納索夫 (Atanasoff) 和貝理 (Berry) 製造出第一部\textbf{電子式電腦 ABC} (Atanasoff-Berry Computer)，使用\textbf{真空管}作為主要電子元件。
+\item 西元 1944 年，美國哈佛大學教授艾肯 (Aiken) 建造第一部\textbf{全自動電子式電腦} Mark I，採用\textbf{哈佛架構}。
+\item 西元 1945 年，馮紐曼 (范紐曼，von Neumann) 提出\textbf{內儲程式} (stored program) 的觀念，程式指令和資料一起儲存在記憶體中 (早期是固定在硬體架構中)。
+\item 西元 1946 年，美國賓州大學教授 John W. Mauchly 和 J. Presper Eckert Jr. 與軍方合作製造出第一部大型電子計算機──\textbf{ENIAC}，用以計算飛彈彈道。後來再以\textbf{馮紐曼架構}於 1949 年改良為 EDVAC。
+\end{itemize}
+
+\subsubsection{電晶體時期 (1947 - 1957)}
+\begin{itemize}
+\item 西元 1947 年，美國貝爾實驗室發明了\textbf{電晶體}。
+\item 西元 1949 年，英國劍橋大學完成第一部大型內儲程式電腦──EDSAC。
+\item 西元 1951 年，美國賓州大學教授 John W. Mauchly 和 J. Presper Eckert Jr. 建造第一部商業用途電腦──\textbf{UNIVAC 1}。同年，UNIVAC 1 投入美國人口普查局服役。
+\item 西元 1954 年，美國貝爾實驗室製出第一台以電晶體為主要元件的電腦──\textbf{TRADIC}。
+\end{itemize}
+
+\subsubsection{積體電路時期 (1958 - 1976)}
+\begin{itemize}
+\item 西元 1958 年，美國德州儀器公司發明了\textbf{積體電路} (IC, Integrated Circuit)。
+\item 西元 1964 年，美國 IBM 開發出第一台以 IC 為主元件的 \textbf{System / 360 電腦}。
+\item 西元 1965 年，美國摩爾 (Moore) 提出\textbf{摩爾定律}：每隔 18 到 24 個月積體電路中電晶體的數目會變成兩倍。摩爾在 1968 年成立 Intel 公司。
+\item 西元 1971 年，美國 Intel 公司發表全世界第一款微處理器 4004。同一年，\textbf{丹尼斯·里奇} (Dennis Ritchie) 與肯·湯普遜 (Ken Thompson) 發明了 \textbf{C 語言}。
+\item 西元 1973 年，第三版 \textbf{UNIX} 誕生，此版本是丹尼斯·里奇與肯·湯普遜以 C 語言寫成。
+\end{itemize}
+
+\subsubsection{個人化電腦 (1977 - 1994)}
+\begin{itemize}
+\item 西元 1977 年，美國 Apple 公司推出 \textbf{APPLE II} 電腦：採封閉性硬體系統架構，從此進入電腦個人化時代。
+\item 西元 1981 年，美國 IBM 公司推出第一台個人電腦，稱為 \textbf{IBM PC}：採開放性硬體系統架構，造成 IBM 相容型電腦的大量生產。
+\item 西元 1983 年，\textbf{TCP/IP 協定}成為 \textbf{ARPANET} 的主要協定，為日後的網際網路打下基礎。
+\item 西元 1985 年，\textbf{Intel 80386 CPU} 發布，讓往後電腦進入多工作業系統時代。
+\item 西元 1990 年，\textbf{windows 3.0} 推出，微軟開始進入圖形化介面。
+\item 西元 1991 年，\textbf{林納斯·本納第·托瓦茲} (Linus Benedict Torvalds) 首次發行 \textbf{linux} 作業系統。
+\end{itemize}
+
+\subsubsection{網路資訊時代 (1995 - 至今)}
+\begin{itemize}
+\item 西元 1995 年，\textbf{網際網路} (Internet) 開放給商業，開啟網路時代。
+\item 西元 1999 年，「\textbf{Web 2.0}」首次被提出。
+\item 西元 2001 年，美國 Apple 公司，\textbf{iPod} 正式發表，開啟數位音樂及掌上型裝置的新時代。
+\item 西元 2006 年，亞馬遜開始提供雲端運算服務。同年，Google 首次提出「\textbf{雲端計算}」的概念。
+\item 西元 2007 年，美國 Apple 公司推出 \textbf{iPhone}，智慧型手機開始風行。同年，開放手持裝置聯盟發布 \textbf{Android} 作業系統。
+\end{itemize}
+
+\subsection{計算機世代的演進}
+
+\begin{table}[h!]
+\centering
+\caption{傳統的計算機世代}
+\label{tbl:com-gen}
+\begin{tabular}{|l||c|c|c|c|c|}
+\hline
+世代 &
+\begin{tabular}[c]{@{}c@{}}第一代\\ 1942 - 1954\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}第二代\\ 1954 - 1964\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}第三代\\ 1964 - 1971\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}第四代\\ 1971 - 現在\end{tabular}  &
+\begin{tabular}[c]{@{}c@{}}第五代\\ 發展中\end{tabular}\\
+\hline
+\hline
+主要元件 & 真空管 & 電晶體 &
+\begin{tabular}[c]{@{}c@{}}積體電路\\ (IC)\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}超大型\\ 積體電路\\ (VLSI)\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}人工智慧\\ (AI)\end{tabular}\\
+\hline
+程式語言  &
+\begin{tabular}[c]{@{}c@{}}機器語言、\\ 組合語言\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}組合語言、\\ COBOL、\\ FORTRAN\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}高階語言、\\ 物件導向語言\\ 雛形\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}物件導向語\\ 言、問題導\\ 向語言\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}自然語言、\\ LISP、\\ PROLOG\end{tabular} \\
+\hline
+主記憶體  &
+\begin{tabular}[c]{@{}c@{}}磁鼓\\ (magnetic\\ drum)\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}4KB - 32KB\\ 磁鼓或磁芯\\ (magnetic core)\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}32KB - 3MB\\ 磁芯或半導體\\ 記憶體\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}3 MB 以上\\ 的半導體\\ 記憶體\end{tabular} & \\
+\hline
+輔助記憶體 & 打孔卡片 & 磁帶、磁碟 & 磁帶、磁碟 & 磁碟、光碟 & \\
+\hline
+代表電腦 &
+\begin{tabular}[c]{@{}c@{}}ENIAC、\\ UNIVAC\end{tabular} &
+TRADIC &
+\begin{tabular}[c]{@{}c@{}}IBM\\ System/360\end{tabular} &
+各種 PC & \\
+\hline
+重要記事 & &
+\begin{tabular}[c]{@{}c@{}}開始有\\ 高階語言\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}開始有\\ 作業系統\end{tabular} &
+微電腦誕生 & \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{計算機的類型}
+
+\subsection{傳統分類}
+\begin{itemize}
+\item \textbf{巨}型計算機－－超級電腦 (supercomputer)：
+\item
+\item
+\end{itemize}
+
+\subsection{實際分類}
+
+\section{計算機的組成}
+
+\subsection{計算機組成要素}
+
+\subsection{計算機架構}
+
+\subsubsection{馮紐曼架構}
+
+\subsubsection{哈佛架構}
+
+\clearpage
+\end{CJK}
+
+\end{document}

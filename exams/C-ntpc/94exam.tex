@@ -1,0 +1,423 @@
+\documentclass[12pt,a4paper]{report}
+
+%% === CJK 套件 ===
+\usepackage{CJK,CJKnumb}                     % 中文套件
+%% === AMS 標準套件 ===
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % 數學符號
+%% === 章節內容 ===
+\usepackage{titletoc,titlesec}               % titletoc 目錄修改套件, titlesec 美化章節標題套件
+\usepackage{imakeidx}                        % 索引
+\usepackage{enumitem}
+%% ===  ===
+\usepackage[chapter]{algorithm}              % 演算法套件
+\usepackage[noend]{algpseudocode}            % pseudocode 套件
+\usepackage{listings}                        % 程式碼
+%% === TikZ 套件 ===
+\usepackage{tikz,tkz-graph,tkz-berge}        % 繪圖
+
+%\linespread{1.24}
+
+%% === 設定頁面格式 ===
+%\hoffset         = 10pt                      % 水平位移，預設為 0pt
+\voffset         = -15pt                     % 垂直位移，預設為 0pt
+\oddsidemargin   = 0pt                       % 預設為 31pt
+%\topmargin       = 20pt                      % 預設為 20pt
+%\headheight      = 12pt                      % header 的高度，預設為 12pt
+%\headsep         = 25pt                      % header 和 body 的距離，預設為 25pt
+\textheight      = 620pt                     % body 內文部分的高度，預設為 592pt
+\textwidth       = 450pt                     % body 內文部分的寬度，預設為 390pt
+%\marginparsep    = 10pt                      % margin note 和 body 的距離，預設為 10pt
+%\marginparwidth  = 35pt                      % margin note 的寬度，預設為 35pt
+%\footskip        = 30pt                      % footer 高度 + footer 和 body 的距離，預設為 30pt
+
+\newlist{optionlist}{enumerate}{1}
+\setlist[optionlist]{label=(\Alph*),before=\raggedright}
+\makeatletter
+\newcommand{\customlabel}[2]{%
+\protected@write \@auxout {}{\string \newlabel {#1}{{#2}{}}}}
+\makeatother
+\newcommand{\underlineblank}[1]{\underline{\hspace{0.4cm}{({#1})}\hspace{0.4cm}}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bkai}
+
+%% === 常用的指令，替換成中文 ===
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\contentsname}{目~錄~}
+\renewcommand{\listfigurename}{插~圖~目~錄}
+\renewcommand{\listtablename}{表~格~目~錄}
+\renewcommand{\appendixname}{附~錄}
+%\renewcommand{\refname}{參~考~資~料}    % article
+\renewcommand{\bibname}{參~考~文~獻}     % book
+\renewcommand{\indexname}{索~引}
+\renewcommand{\today}{\number\year~年~\number\month~月~\number\day~日}
+%\newcommand{\zhtoday}{\CJKdigits{\the\year}年\CJKnumber{\the\month}月\CJKnumber{\the\day}日}
+
+\title{九十四學年度\\臺灣省第三區高中資訊學科能力競賽\\(三重高中賽區)}
+\date{}
+\maketitle
+
+\begin{enumerate}
+\item 下列哪一種程式語言最符合以下敘述：「在過去四十年間，這種語言被廣泛使用於人工智慧領域的軟體開發。」
+  \begin{optionlist}
+  \item C++
+  \item Java
+  \item LISP\label{ntpc-94-a1}
+  \item Pascal
+  \end{optionlist}
+\item 以下何者屬於物件導向 (object-oriented) 程式語言？
+  \begin{optionlist}
+  \item C++\label{ntpc-94-a2}
+  \item COBOL
+  \item HTML
+  \item Pascal
+  \end{optionlist}
+\item 結構化程式設計應避免使用以下何種敘述？
+  \begin{optionlist}
+  \item while
+  \item switch
+  \item if
+  \item goto\label{ntpc-94-a3}
+  \end{optionlist}
+\item 一個十進制的四位數的最大值是 9999，那麼一個八進制的三位數的最大值相當於以下哪一個十進制數值？
+  \begin{optionlist}
+  \item 255
+  \item 511\label{ntpc-94-a4}
+  \item 583
+  \item 887
+  \end{optionlist}
+\item 電腦的 CPU 中，以下哪一個暫存器是用來存放下一個將要被執行的指令所在的位址？
+  \begin{optionlist}
+  \item 程式計數器 (program counter)\label{ntpc-94-a5}
+  \item 指令暫存器 (instruction register)
+  \item 記憶體位址暫存器 (memory address register)
+  \item 記憶體資料暫存器 (memory data register)
+  \end{optionlist}
+\item 為了增進 CPU 的效率，當電腦的算術邏輯單元正在執行時，控制單元也會開始進行下一個擷取指令的動作，此技術的英文名稱為以下何者？
+  \begin{optionlist}
+  \item Flip-flop gate
+  \item Pipelining\label{ntpc-94-a6}
+  \item Cache
+  \item Register
+  \end{optionlist}
+\item 以下何者不是匯流排種類的名稱？
+  \begin{optionlist}
+  \item PCI
+  \item USB
+  \item IEEE 1394
+  \item PCX\label{ntpc-94-a7}
+  \end{optionlist}
+\item 將各種資料儲存設備根據其一般的儲存速度由快而慢排列，以下何者\underline{錯誤}？
+  \begin{optionlist}
+  \item 主記憶體、快取記憶體、光碟機\label{ntpc-94-a8}
+  \item 暫存器、主記憶體、光碟機
+  \item 快取記憶體、硬式磁碟、隨身碟
+  \item 暫存器、快取記憶體、磁帶機
+  \end{optionlist}
+\item 磁帶 (Tape) 是採用何種存取方式來存取資料？
+  \begin{optionlist}
+  \item 循序存取\label{ntpc-94-a9}
+  \item 隨機存取
+  \item 直接存取
+  \item 索引存取
+  \end{optionlist}
+\item 所謂的磁碟存取時間 (disk access time) 通常不包含下列那一項？
+  \begin{optionlist}
+  \item 資料傳輸時間 (data transfer time)
+  \item 轉動延遲時間 (rotational delay time)
+  \item 讀寫頭移動時間 (seek time)
+  \item 執行時間 (execution time)\label{ntpc-94-a10}
+  \end{optionlist}
+\item 以下何者不屬於電腦作業系統？
+  \begin{optionlist}
+  \item Linux
+  \item Microsoft DOS
+  \item Microsoft Office\label{ntpc-94-a11}
+  \item Microsoft Windows
+  \end{optionlist}
+\item 在 \underline{http://www.ntnu.edu.tw/index.html} 這個 URL 中，http 代表什麼？
+  \begin{optionlist}
+  \item 主機名稱
+  \item 通訊協定\label{ntpc-94-a12}
+  \item 路徑
+  \item 檔名
+  \end{optionlist}
+\item 例如 \underline{www.yahoo.com} 這樣的網站名稱，轉成 IP 位址後是以幾個位元 (bits) 表示？
+  \begin{optionlist}
+  \item 4 個
+  \item 8 個
+  \item 24 個
+  \item 32 個\label{ntpc-94-a13}
+  \end{optionlist}
+\item 以下何者\underline{不是}正確的網址？
+  \begin{optionlist}
+  \item 140.116.2.121
+  \item 140.222.65.19
+  \item 140.133.165.119
+  \item 140.122.265.21\label{ntpc-94-a14}
+  \end{optionlist}
+\item 下列何者敘述\underline{不正確}？
+  \begin{optionlist}
+  \item Cable Modem 是以 modem 連接電話線傳輸資料\label{ntpc-94-a15}
+  \item 使用 ADSL 上網時，還可用同一條電話線路打電話
+  \item ADSL 是透過電信公司的電話線傳輸資料
+  \item Cable Modem 的下載速度比上傳速度快
+  \end{optionlist}
+\item 下列何者不是影像檔的副檔名？
+  \begin{optionlist}
+  \item BMP
+  \item WAV\label{ntpc-94-a16}
+  \item JPG
+  \item TIF
+  \end{optionlist}
+\item 當我們在程式中使用鏈結串列 (linked lists) 來儲存資料時，以下敘述何者\underline{正確}？
+  \begin{optionlist}
+  \item 必須事先知道總共有多少筆資料。
+  \item 串列中的每一個節點必須儲存指標指向下一個節點。\label{ntpc-94-a17}
+  \item 若欲將一筆資料插入串列中的特定位置時，必須挪動其後每一個節點的位置。
+  \item 無法刪除串列中的任何一筆資料。
+  \end{optionlist}
+\item 下列敘述何者\underline{不正確}？
+  \begin{optionlist}
+  \item 佇列 (queue) 比堆疊 (stack) 適合用來處理副程式的呼叫及返回。\label{ntpc-94-a18}
+  \item 堆疊比佇列適合用來做二元樹的中序 (in-order) 走訪。
+  \item 佇列的應用包括在作業系統中安排工作程序。
+  \item 鏈結串列 (linked list) 與陣列 (array) 皆可以用來製作 (implement) 堆疊。
+  \end{optionlist}
+\item 利用鏈結串列 (linked-list) 與陣列 (array) 來表示二元樹，下列的敍述何者\underline{不正確}？
+  \begin{optionlist}
+  \item 用串列來表示二元樹時，對歪斜樹的處理較陣列節省記憶體空間。
+  \item 用串列來表示二元樹時，做插入或刪除的節點的動作較容易。
+  \item 用串列來表示二元樹，比用陣列表示時容易找到某一節點的父節點。\label{ntpc-94-a19}
+  \item 用串列來表示二元樹時，大致而言約有一半的 link 欄位 (即指向左右子樹的指標欄位) 未被使用。
+  \end{optionlist}
+\item 在二元樹的走訪順序中，先走訪父節點、再走訪左子節點、最後走訪右子節點，稱為以下何者？
+  \begin{optionlist}
+  \item 前序 (pre-order) 走訪\label{ntpc-94-a20}
+  \item 中序 (in-order) 走訪
+  \item 後序 (post-order) 走訪
+  \item 循序 (sequential-order) 走訪
+  \end{optionlist}
+\item 假設有一個雙層 \textbf{for} 迴圈如下，則 \textbf{print} \texttt{"\$"} 這個敘述會被執行幾次？
+\algblockdefx[ForLoop]{For}{Next}[3]{\textbf{for} #1 $=$ #2 \textbf{to} #3}[1]{\textbf{next} #1}
+\algloopdefx{Print}[1]{\textbf{print} #1}
+\begin{algorithm}[h]
+  \begin{algorithmic}
+  \For{$k$}{$1$}{$5$}
+    \For{$m$}{$1$}{$k$}
+      \Print{\texttt{"\$"}}
+    \Next{$m$}
+  \Next{$k$}
+  \end{algorithmic}
+\end{algorithm}
+  \begin{optionlist}
+  \item 5
+  \item 10
+  \item 15\label{ntpc-94-a21}
+  \item 25
+  \end{optionlist}
+\item 若將以下運算式的運算結果以二進位數表示，則該二進位數中共有幾個「1」？
+\begin{align*}
+3\times{16^3}+5\times{16^2}+7\times{16}+9
+\end{align*}
+  \begin{optionlist}
+  \item 9 個\label{ntpc-94-a22}
+  \item 7 個
+  \item 5 個
+  \item 以上皆非
+  \end{optionlist}
+\item 給定兩個以八位元的二補數 (two's complement) 所表示的數 $11110000$ 及 $11101000$。此兩數相加之結果若以十進制表示，其值為以下何者？
+  \begin{optionlist}
+  \item $40$
+  \item $-40$\label{ntpc-94-a23}
+  \item $216$
+  \item $-216$
+  \end{optionlist}
+\item 設 \texttt{I = -5}，\texttt{J = 10}，\texttt{K = 0}，以下之邏輯運算式何者之運算結果為真 (true)？
+  \begin{optionlist}
+  \item \texttt{I + K >= J}
+  \item \texttt{( I < J ) and not ( J > K )}
+  \item \texttt{(( I < K ) or ( J < K )) and ( K >= 0 )}\label{ntpc-94-a24}
+  \item \texttt{not (( I > J ) or ( K > I ))}
+  \end{optionlist}
+\item 下列為一函式之虛擬碼，其中 \textbf{FunctionN} 為函式名稱，而 $M$、$N$、$j$ 皆為變數。
+\algnewcommand\algorithmicto{\textbf{to}}
+\algblockdefx[Function]{Func}{EndFunc}[2]{\textbf{#1} (#2)}{\textbf{End}}
+\algblockdefx[Function]{While}{EndWhile}[1]{\textbf{while} (#1)}{\textbf{end while}}
+\algnewcommand\Set[2]{\State \textbf{set} #1 \algorithmicto\ #2}
+\begin{algorithm}[H]
+  \begin{algorithmic}
+  \Func{FunctionN}{\texttt{integer} $N$}
+    \Set{$M$}{$1$}
+    \Set{$j$}{$1$}
+    \While{$j<N$}
+      \State $M=M\times{j}+j$
+      \State $j=j+1$
+    \EndWhile
+  \EndFunc
+  \end{algorithmic}
+\end{algorithm}
+若傳入此函式之 $N$ 值為 4，下列程式的執行結果為何？
+  \begin{optionlist}
+  \item 6
+  \item 18
+  \item 21\label{ntpc-94-a25}
+  \item 85
+  \end{optionlist}
+\item 假設 x 為一整數變數，且 x 已有初始值。若有兩個 \texttt{if-then} 敘述如下：\\
+\texttt{if x > 5 then x = x * 2 ;}\\
+\texttt{if x > 10 then x = 0 ;}\\
+以上兩個 \texttt{if} 敘述的執行效果等同於下列哪一個 \texttt{if} 敘述？
+  \begin{optionlist}
+  \item \texttt{if x > 5 then x = 0 ;}
+  \item \texttt{if x > 5 then x = x * 2 ;}
+  \item \texttt{if x > 5 then x = 0 else x = x * 2 ;}
+  \item \texttt{if x > 5 then x = x * 2 else if (x > 10) x = 0 ;}
+  \end{optionlist}
+\item 假設變數 x, y, z 均為整數，而且 x 和 y 均已設定了初始值。設有一程式片段如下：
+\begin{lstlisting}[language=C]
+if (y < 0)
+{
+x = -x ;
+y = -y ;
+}
+z = 0 ;
+while (y > 0)
+{
+z = z + x ;
+y = y - 1 ;
+}
+\end{lstlisting}
+以上程式片段執行結束時，變數 z 之值可以用下列哪一個運算式表示之？
+  \begin{optionlist}
+  \item $z = x + y$
+  \item $z = x * y$
+  \item $z = |x|$
+  \item $z = xy$
+  \end{optionlist}
+\item 設有一個二維陣列 GRADE 以 Visual Basic 的語法宣告如下：
+\begin{center}
+\textbf{DIM GRADE (1 TO 10, 1 TO 30) AS INTEGER}
+\end{center}
+若此陣列在記憶體中是由位置 $X$ 開始存放，而且存放順序是採取以『行』為主 (row major order) 的方式，同時假設一個整數變數佔用 4 bytes 的記憶體空間。換言之，GRADE(1,1) 在記憶體中的起始位址是 $X$，GRADE(1,2) 的起始位址便是 $X+4$， GRADE(1,3) 便是 $X+8$，…，以此類推。請問下列哪一個公式正確地表示出元素 GRADE(I, J) 在記憶體中的位置？
+  \begin{optionlist}
+  \item $X+[(I-1)*10+(J-1)]*4$
+  \item $X+[(I-1)*30+(J-1)]*4$
+  \item $X+[(J-1)*10+(I-1)]*4$
+  \item $X+[(J-1)*30+(I-1)]*4$
+  \end{optionlist}
+\item 給定以下八個數：16、77、25、85、12、8、36、52。如果採取兩兩比較的方式，以找出其中的最大數及最小數，則最少所需的比較次數為多少次？
+  \begin{optionlist}
+  \item 7 次
+  \item 8 次
+  \item 10 次
+  \item 14 次
+  \end{optionlist}
+\item 給定以下六個數：32、3、21、15、1、8。如果採用泡沫排序法 (bubble sort) 來將這六個數由小排到大，共需幾次的數字對調 (swap) 方可完成？
+  \begin{optionlist}
+  \item 15 次
+  \item 11 次
+  \item 10 次
+  \item 9 次
+  \end{optionlist}
+\item 我們宣告一個一維整數陣列 stack[10]，來實作一個最多可儲存 10 筆整數資料的堆疊。假設陣列中的索引值是從 0 到 9 (stack[0], stack[1], …, stack[9])，我們以一個 \texttt{top} 變數來記錄堆疊中最上面一筆資料儲存在陣列中的索引值，因此當堆疊初始為空時，\texttt{top} 變數的值為 -1。而 \texttt{data} 變數則用來記錄欲新增的整數資料或從堆疊中取出的整數資料。
+現考慮以下幾個程式片段：
+  \begin{enumerate}[label=(\Roman*)]
+  \item \label{ntpc-94-p31-1}
+    \lstinline{top = top + 1;}{}\\
+    \lstinline{stack[top] = data;}{}
+  \item \label{ntpc-94-p31-2}
+    \lstinline{stack[top] = data;}{}\\
+    \lstinline{top = top - 1;}{}
+  \item \label{ntpc-94-p31-3}
+    \lstinline{top = top + 1;}{}\\
+    \lstinline{data = stack[top];}{}
+  \item \label{ntpc-94-p31-4}
+    \lstinline{data = stack[top];}{}\\
+    \lstinline{top = top - 1;}{}
+  \end{enumerate}
+請問以下何者敘述正確？
+  \begin{optionlist}
+  \item 對堆疊做新增的程式片段應該為 \ref{ntpc-94-p31-1}，做刪除的程式片段應該為 \ref{ntpc-94-p31-2}
+  \item 對堆疊做新增的程式片段應該為 \ref{ntpc-94-p31-3}，做刪除的程式片段應該為 \ref{ntpc-94-p31-4}
+  \item 對堆疊做新增的程式片段應該為 \ref{ntpc-94-p31-1}，做刪除的程式片段應該為 \ref{ntpc-94-p31-4}
+  \item 對堆疊做新增的程式片段應該為 \ref{ntpc-94-p31-2}，做刪除的程式片段應該為 \ref{ntpc-94-p31-3}
+  \end{optionlist}
+\item 在 12 個金幣中，有一個是假的，且知假金幣比標準金幣輕。若使用天平來秤金幣，天秤每邊可同時放多個金幣，則最少需秤幾次就一定能找出其中的假金幣？
+  \begin{optionlist}
+  \item 2 次
+  \item 3 次
+  \item 4 次
+  \item 6 次
+  \end{optionlist}
+\item 一個陣列可以看成一個完整二元樹 (complete binary tree)，即對陣列 T[1]，T[2]，…，T[n]，視 T[1] 為根 (root)，T[i] 的子節點為 T[2i] 和 T[2i+1]，依此類推。請問 T[11] 的父節點 (parent node) 為何？
+  \begin{optionlist}
+  \item T[1]
+  \item T[5]
+  \item T[6]
+  \item T[22]
+  \end{optionlist}
+\item 以下有一以 C 語言撰寫之遞迴函式 (recursive function)。假設 N ≧ 0，而此函式是用來計算 0 至 N 之間的所有整數之和：
+\begin{lstlisting}
+int Sum (int N)
+{
+if (N == 0) return 0;
+else ___________________;
+}
+\end{lstlisting}
+
+空格中應填入以下何者？
+  \begin{optionlist}
+  \item while (N != 0) return N + Sum(N + 1)
+  \item return (N - 1) + Sum(N - 1)
+  \item return N + Sum(N - 1)
+  \item return (N - 1) + Sum(N)
+  \end{optionlist}
+\item 有一遞迴函式 (recursive function) 如下：
+
+function What (integer k) : integer
+begin
+if (k = 1)
+then return 0
+else return (1 + What (k/2)) ;
+end;
+
+以下何者將使 What(k) 之呼叫出現無窮遞迴 (infinite recursion) 的狀況？
+  \begin{optionlist}
+  \item 當 k 為任何正整數時
+  \item 當 k 為任何負整數或 0 時
+  \item 當 k 為任何奇數時
+  \item 當 k 為任何偶數時
+  \end{optionlist}
+\end{enumerate}
+
+\newpage
+
+\section*{參考答案}
+
+\begin{table}[h]
+  \center
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  題號 & 答案 & 題號 & 答案 & 題號 & 答案 & 題號 & 答案 & 題號 & 答案\\
+  \hline\hline
+  \textbf{1}  & \ref{ntpc-94-a1} & \textbf{2}  & \ref{ntpc-94-a2} & \textbf{3}  & \ref{ntpc-94-a3} & \textbf{4}  & \ref{ntpc-94-a4} & \textbf{5}  & \ref{ntpc-94-a5}\\
+  \hline
+  \textbf{6}  & \ref{ntpc-94-a6} & \textbf{7}  & \ref{ntpc-94-a7} & \textbf{8}  & \ref{ntpc-94-a8} & \textbf{9}  & \ref{ntpc-94-a9} & \textbf{10} & \ref{ntpc-94-a10}\\
+  \hline
+  \textbf{11} & \ref{ntpc-94-a11} & \textbf{12} & \ref{ntpc-94-a12} & \textbf{13} & \ref{ntpc-94-a13} & \textbf{14} & \ref{ntpc-94-a14} & \textbf{15} & \ref{ntpc-94-a15}\\
+  \hline
+  \textbf{16} & \ref{ntpc-94-a16} & \textbf{17} & \ref{ntpc-94-a17} & \textbf{18} & \ref{ntpc-94-a18} & \textbf{19} & \ref{ntpc-94-a19} & \textbf{20} & \ref{ntpc-94-a20}\\
+  \hline
+  \textbf{21} & \ref{ntpc-94-a21} & \textbf{22} & \ref{ntpc-94-a22} & \textbf{23} & \ref{ntpc-94-a23} & \textbf{24} & \ref{ntpc-94-a24} & \textbf{25} & \ref{ntpc-94-a25}\\
+  \hline
+  \textbf{26} & \ref{ntpc-94-a26} & \textbf{27} & \ref{ntpc-94-a27} & \textbf{28} & \ref{ntpc-94-a28} & \textbf{29} & \ref{ntpc-94-a29} & \textbf{30} & \ref{ntpc-94-a30}\\
+  \hline
+  \textbf{31} & \ref{ntpc-94-a31} & \textbf{32} & \ref{ntpc-94-a32} & \textbf{33} & \ref{ntpc-94-a33} & \textbf{34} & \ref{ntpc-94-a34} & \textbf{35} & \ref{ntpc-94-a35}\\
+  \hline
+  \end{tabular}
+\end{table}
+
+\end{CJK}
+\end{document}
