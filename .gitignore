@@ -1,0 +1,16 @@
+*.tex
+
+*.aux
+*.log
+*.synctex.gz
+*.toc
+*.idx
+*.ilg
+*.ind
+
+*.jpg
+*.png
+*.gif
+
+*~
+Thumbs.db
