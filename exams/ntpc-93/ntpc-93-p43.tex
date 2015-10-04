@@ -1,0 +1,14 @@
+\ifx\ntpcNinetyThree\undefined[93學年基北區] \fi
+\label{ntpc-93-p43} 承上題，若將演算法改為
+\begin{algorithm}[h!]
+  \begin{algorithmic}
+  \Procedure{order}{$T$}
+    \If{$T\neq{0}$}
+      \State \Call{order}{RightChild($T$)};
+      \State print(DATA($T$));
+      \State \Call{order}{LeftChild($T$)};
+    \EndIf
+  \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+\\請問其節點資料印出的順序又為何？ \underlineblank{\ref{ntpc-93-p43}}。\customlabel{ntpc-93-a43}{$E/D+C-B*A$}

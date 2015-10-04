@@ -1,343 +1,60 @@
 \documentclass[12pt,a4paper]{report}
+\def\ntpcNinetyThree{}
 
-%% === CJK 套件 ===
-\usepackage{CJK,CJKnumb}                     % 中文套件
-%% === AMS 標準套件 ===
-\usepackage{amsmath,amsfonts,amssymb,amsthm} % 數學符號
-%% === 章節內容 ===
-\usepackage{titletoc,titlesec}               % titletoc 目錄修改套件, titlesec 美化章節標題套件
-\usepackage{imakeidx}                        % 索引
-\usepackage{enumitem}
-%% ===  ===
-\usepackage[chapter]{algorithm}              % 演算法套件
-\usepackage[noend]{algpseudocode}            % pseudocode 套件
-\usepackage{listings}                        % 程式碼
-%% === TikZ 套件 ===
-\usepackage{tikz,tkz-graph,tkz-berge}        % 繪圖
-
-%\linespread{1.24}
-
-%% === 設定頁面格式 ===
-%\hoffset         = 10pt                      % 水平位移，預設為 0pt
-\voffset         = -15pt                     % 垂直位移，預設為 0pt
-\oddsidemargin   = 0pt                       % 預設為 31pt
-%\topmargin       = 20pt                      % 預設為 20pt
-%\headheight      = 12pt                      % header 的高度，預設為 12pt
-%\headsep         = 25pt                      % header 和 body 的距離，預設為 25pt
-\textheight      = 620pt                     % body 內文部分的高度，預設為 592pt
-\textwidth       = 450pt                     % body 內文部分的寬度，預設為 390pt
-%\marginparsep    = 10pt                      % margin note 和 body 的距離，預設為 10pt
-%\marginparwidth  = 35pt                      % margin note 的寬度，預設為 35pt
-%\footskip        = 30pt                      % footer 高度 + footer 和 body 的距離，預設為 30pt
-
-\newlist{optionlist}{enumerate}{1}
-\setlist[optionlist]{label=(\Alph*),before=\raggedright}
-\makeatletter
-\newcommand{\customlabel}[2]{%
-\protected@write \@auxout {}{\string \newlabel {#1}{{#2}{}}}}
-\makeatother
-\newcommand{\underlineblank}[1]{\underline{\hspace{0.4cm}{({#1})}\hspace{0.4cm}}}
+\input{../book/preamble}
 
 \begin{document}
 \begin{CJK}{UTF8}{bkai}
 
-%% === 常用的指令，替換成中文 ===
-\renewcommand{\figurename}{圖}
-\renewcommand{\tablename}{表}
-\renewcommand{\contentsname}{目~錄~}
-\renewcommand{\listfigurename}{插~圖~目~錄}
-\renewcommand{\listtablename}{表~格~目~錄}
-\renewcommand{\appendixname}{附~錄}
-%\renewcommand{\refname}{參~考~資~料}    % article
-\renewcommand{\bibname}{參~考~文~獻}     % book
-\renewcommand{\indexname}{索~引}
-\renewcommand{\today}{\number\year~年~\number\month~月~\number\day~日}
-%\newcommand{\zhtoday}{\CJKdigits{\the\year}年\CJKnumber{\the\month}月\CJKnumber{\the\day}日}
-
+\subimport{../book/}{document-config.tex}
 \title{九十三學年度\\臺灣省第三區高中資訊學科能力競賽筆試\\(三重高中賽區)}
 \date{}
 \maketitle
 
 \begin{enumerate}
-\item 關於映像管螢幕的敘述，下列那一項是錯的？
-  \begin{optionlist}
-  \item 映像管螢幕中的電子槍所射出的三個電子束控制的分別是紅、綠、藍三個顏色。
-  \item 所謂 17 吋螢幕中的「17 吋」指的是映像管對角線的長度。
-  \item 螢幕的水平掃描頻率指的是螢幕的更新率，也就是螢幕每秒鐘可以更新幾張畫面，單位為赫茲 (Hz)。\label{ntpc-93-a1}
-  \item 解析度是螢幕能夠顯示的像素 (pixel) 數目，解析度愈高，螢幕上顯示的圖形就會愈細緻。
-  \end{optionlist}
-\item 關於印表機的敘述，下列那一項是錯的？
-  \begin{optionlist}
-  \item 印表機可以分為撞擊式 (impact) 與非撞擊式 (nonimpact) 二種。
-  \item 噴墨印表機屬於撞擊式印表機。\label{ntpc-93-a2}
-  \item 印表機的列印速度是以 ppm (page per minute) 來描述，意指每分鐘可以列印幾頁。 
-  \item 印表機的列印品質是以 dpi (dot per inch) 來描述，意指在一英吋的寬度內，可以細分成幾個點。
-  \end{optionlist}
-\item 下列何者敘述不正確？
-  \begin{optionlist}
-  \item SRAM 不需做更新 (reflesh) 的動作，DRAM 則需要。
-  \item SRAM 在停電後儲存的資料還在，DRAM 在停電後儲存的資料就不見了。\label{ntpc-93-a3}
-  \item SRAM 和 DRAM 都可以當做電腦的記憶體。
-  \item ROM 在電腦關機後儲存的資料不會消失。
-  \end{optionlist}
-\item 電腦中的中央處理單位 CPU 主要由下列那兩個單位所組成？
-  \begin{optionlist}
-  \item 輸入單元與輸出單元
-  \item 記憶單元與控制單元
-  \item 算術邏輯單元與輸出單元
-  \item 控制單元與算術邏輯單元\label{ntpc-93-a4}
-  \end{optionlist}
-\item 一般所謂 32 位元或 64 位元微處理機 (Microprocessor) 是基於下列何者而稱呼的？
-  \begin{optionlist}
-  \item 暫存器 (Register) 數目
-  \item 位址匯流排 (Address Bus)
-  \item 控制匯流排 (Control Bus)
-  \item 資料匯流排 (Data Bus)\label{ntpc-93-a5}
-  \end{optionlist}
-\item 那一種錯誤在程式編譯過程中會被發現？
-  \begin{optionlist}
-  \item 邏輯錯誤
-  \item 資料錯誤
-  \item 使用者輸入錯誤
-  \item 語法錯誤\label{ntpc-93-a6}
-  \end{optionlist}
-\item 若有 15 筆已排序好的整數資料，欲從中搜尋某一整數是否存在該數列中，下列何者敘述不正確？
-  \begin{optionlist}
-  \item 以二元搜尋法 (binary search)，最多可能需做 5 次整數比較。\label{ntpc-93-a7}
-  \item 以二元搜尋法 (binary search)，最少要做 1 次整數比較。
-  \item 以循序搜尋法 (sequential search)，最少要做 1 次整數比較。
-  \item 以循序搜尋法 (sequential search)，最多可能需做 15 次整數比較。
-  \end{optionlist}
-\item 關於陣列 (array) 的描述，下列何者是錯的？
-  \begin{optionlist}
-  \item 同一陣列常被用來存放多個不同型態的資料。\label{ntpc-93-a8}
-  \item 一個陣列只有一個名稱，但可以透過索引 (index) 來存取陣列元素。
-  \item 陣列的宣告會佔用連續的記憶體空間。
-  \item 陣列可以不只一維 (1D)，必要時也可以宣告二維或三維陣列，甚至是多維陣列。
-  \end{optionlist}
-\item 大明打字速度平均一分鐘 60 個中文字，如果要打完一份足夠將一片磁片 (1.44MB) 填滿的文件，約需耗時多久？ (選最近值)
-  \begin{optionlist}
-  \item 250 小時\label{ntpc-93-a9}
-  \item 300 小時
-  \item 25 小時
-  \item 50 小時
-  \end{optionlist}
-\item 如果將下列二進位數字 ${(101101)}_{2}-{(100010)}_{2}$ 以 2 的補數加法來計算則可得：
-  \begin{optionlist}
-  \item 1001111
-  \item 001011\label{ntpc-93-a10}
-  \item 101111
-  \item 001111
-  \end{optionlist}
-\item 電腦記憶體在儲存數值資料時通常會以有限的位元來表示，故數值資料在儲存時會受到限制。當要儲存數值太大時，就會有何種錯誤現象？
-  \begin{optionlist}
-  \item 溢位 (Overflow)\label{ntpc-93-a11}
-  \item 虧位 (Underfiow)
-  \item 捨入誤差 (Round-off)
-  \item 捨去誤差 (Truncation)
-  \end{optionlist}
-\item 下列何種資料結構的資料存取方式是先進先出？
-  \begin{optionlist}
-  \item 堆疊 (Stack)
-  \item 佇列 (Queue)\label{ntpc-93-a12}
-  \item 陣列 (Array)
-  \item 以上皆非
-  \end{optionlist}
-\item 將字串 ABACABCD 依序由左至右全部輸入堆疊 (stack) 後再輸出，其輸出結果為何？
-  \begin{optionlist}
-  \item ABACABCD
-  \item AAABBCCD
-  \item DCBACABA\label{ntpc-93-a13}
-  \item ABCDABAC
-  \end{optionlist}
-\item 下列何者不相等？
-  \begin{optionlist}
-  \item ${(79)}_{10}$
-  \item ${(4F)}_{16}$
-  \item ${(127)}_{8}$\label{ntpc-93-a14}
-  \item ${(1001111)}_{2}$
-  \end{optionlist}
-\item 若一部電腦有 28 條位址匯流排，32 條資料匯流排，在主記憶體中每一個位元組 (byte) 都需要一個位址編碼的前提下，該電腦的主記憶體最多可擴充到多少位元組 (byte)？
-  \begin{optionlist}
-  \item 256 Mbyte\label{ntpc-93-a15}
-  \item 256 Kbyte
-  \item 8 Mbyte
-  \item 8 Gbyte
-  \end{optionlist}
-\item 下列那一組二進位數字在做完 OR 的運算後其結果與其他組的不同？
-  \begin{optionlist}
-  \item 01010101 與 10101010 
-  \item 11011101 與 10101010
-  \item 01010101 與 00100010\label{ntpc-93-a16}
-  \item 11011101 與 00100010
-  \end{optionlist}
-\item 若用 8 bits 來儲存使用二的補數表示法表示的二進位數字，請問它能儲存何種範圍的數字？
-  \begin{optionlist}
-  \item 0 至 +256
-  \item -128 至 +128
-  \item -127 至 +128
-  \item -128 至 +127\label{ntpc-93-a17}
-  \end{optionlist}
-\item 微軟公司 Windows XP 作業系統的 XP 是什麼的縮寫？
-  \begin{optionlist}
-  \item eXPert
-  \item eXPerimental
-  \item eXPensive
-  \item eXPerience\label{ntpc-93-a18}
-  \end{optionlist}
-\item 下列何者不是壓縮檔的副檔名？
-  \begin{optionlist}
-  \item BMP\label{ntpc-93-a19}
-  \item ZIP
-  \item RAR
-  \item GZ
-  \end{optionlist}
-\item 下列何者為物件導向程式語言？
-  \begin{optionlist}
-  \item ADA
-  \item PROLOG
-  \item C++\label{ntpc-93-a20}
-  \item PASCAL
-  \end{optionlist}
-\item 已知下列三個敘述皆成立：\\
-``張三喜歡吃西瓜或李四喜歡吃西瓜"，\\
-``若王五不喜歡吃西瓜則李四不喜歡吃西瓜"，\\
-``若張三喜歡吃西瓜則李四喜歡吃西瓜"。\\
-下列何者敘述一定會成立？
-  \begin{optionlist}
-  \item 張三喜歡吃西瓜
-  \item 李四不喜歡吃西瓜
-  \item 李四喜歡吃西瓜\label{ntpc-93-a21}
-  \item 王五不喜歡吃西瓜
-  \end{optionlist}
-\item 關於 XML (extensible markup language)，下列何者敘述正確？
-  \begin{optionlist}
-  \item 是一種針對工程計算用的程式語言
-  \item 是一種網頁語言\label{ntpc-93-a22}
-  \item 是一種擴充性的繪圖程式語言
-  \item 是一種擴充性的人工智慧程式語言
-  \end{optionlist}
-\item 下列何者可以把例如 www.yahoo.com 這樣的網站名稱轉為 IP 位址表示？
-  \begin{optionlist}
-  \item proxy 伺服器
-  \item Email 伺服器
-  \item DNS 伺服器\label{ntpc-93-a23}
-  \item WWW 伺服器
-  \end{optionlist}
-\item 下列何者不是合理的 IP Address？(以 IPv4 來判斷)
-  \begin{optionlist}
-  \item 140.122.76.2
-  \item 140.122.76.128
-  \item 140.122.76.247
-  \item 140.122.76.256\label{ntpc-93-a24}
-  \end{optionlist}
-\item 要在 Internet 上利用全球資訊網 (WWW) 查詢某一特定文件時，最快的方式是直接輸入該文件的網址 (URL)，例如：http://www.ice.ntnu.edu.tw:100/ICE/index.html。請問上述的範例中，定義通訊協定的是那一部份？
-  \begin{optionlist}
-  \item http\label{ntpc-93-a25}
-  \item www.ice.ntnu.edu.tw
-  \item ICE
-  \item index.html
-  \end{optionlist}
-\item TCP/IP 是一種
-  \begin{optionlist}
-  \item 程式語言
-  \item 作業系統
-  \item 網路設備
-  \item 通訊協定\label{ntpc-93-a26}
-  \end{optionlist}
-\item 下列何者不是副程式的特性？
-  \begin{optionlist}
-  \item 增進程式的結構化及模組化
-  \item 提高程式的可讀性
-  \item 程式的除錯不易\label{ntpc-93-a27}
-  \item 需要花較多執行時間
-  \end{optionlist}
-\item 下列何者不是作業系統？
-  \begin{optionlist}
-  \item UNIX
-  \item OS/2
-  \item WindowsXP
-  \item OfficeXP\label{ntpc-93-a28}
-  \end{optionlist}
-\item 下列哪一項不屬於作業系統的工作範圍？
-  \begin{optionlist}
-  \item 輸出入管理
-  \item 編譯程式\label{ntpc-93-a29}
-  \item 記憶體管理
-  \item 分配電腦資源
-  \end{optionlist}
-\item \label{ntpc-93-p30} ${(10101101)}_{2}$ 的十進位表示法為 \underlineblank{\ref{ntpc-93-p30}}。\customlabel{ntpc-93-a30}{173}
-\item \label{ntpc-93-p31} 將 -128 以八位元的二補數 (two's complement) 表示的結果為何？ \underlineblank{\ref{ntpc-93-p31}}\customlabel{ntpc-93-a31}{10000000}
-\item \label{ntpc-93-p32} 在十六進位中 ${(43)}_{16}$ 與 ${(39)}_{16}$ 相加後，其結果值為 \underlineblank{\ref{ntpc-93-p32}}。\customlabel{ntpc-93-a32}{${(7C)}_{16}={(124)}_{10}$}
-\item \label{ntpc-93-p33} ${(110)}_{x}={(70)}_{8}$，請問 x 之值應為何？ \underlineblank{\ref{ntpc-93-p33}}\customlabel{ntpc-93-a33}{7}
-\item \label{ntpc-93-p34} 若將運算式 $4*8^5+8^3+2*8+1$ 的運算結果以二進位數表示，則該二進位數中共有 \underlineblank{\ref{ntpc-93-p34}} 個 ``1"。\customlabel{ntpc-93-a34}{4}
-\item \label{ntpc-93-p35} 考慮下列的遞迴函式：$F(0)=0,F(1)=1$，對於 $n\geq{2}$，$F(n)=F(n-1)+F(n-2)$。請問 $F(8)=$\underlineblank{\ref{ntpc-93-p35}}。\customlabel{ntpc-93-a35}{21}
-\item \label{ntpc-93-p36} 如果以泡沫排序法 (Bubble Sort) 來將數串 (30, 17, 8, 24, 53, 10, 15, 28) 由大排到小，則共要 \underlineblank{\ref{ntpc-93-p36}} 次數字對調 (Swap) 方可完成？\customlabel{ntpc-93-a36}{14}
-\item \label{ntpc-93-p37} 給定 4096 筆數字資料存在一個陣列中，先用泡沫排序法 (Bubble Sort) 由小至大排序，再用二分法搜尋 ``1498" 是否存在於陣列中，則最多需比較 \underlineblank{\ref{ntpc-93-p37}} 次就可判定 ``1498" 是否存在？\customlabel{ntpc-93-a37}{13}
-\item \label{ntpc-93-p38} 如果要利用電腦播放影片，可將影片檔案存於光碟片中。因為影片檔案本身十分龐大，為了便於儲存，我們會將檔案進行壓縮處理。請問目前最常用的影片資料壓縮格式是什麼？ \underlineblank{\ref{ntpc-93-p38}}\customlabel{ntpc-93-a38}{MPEG, AVI}
-\item \label{ntpc-93-p39} 電腦中所謂全彩影像是以 \underlineblank{\ref{ntpc-93-p39}} 個位元組 (byte) 來表示影像中每個像素的顏色。\customlabel{ntpc-93-a39}{3}
-\item \label{ntpc-93-p40} 若以 9600 bps 的傳輸速率傳送 6000 個 Big-5 碼中文字，須多少秒的傳輸時間？ \underlineblank{\ref{ntpc-93-p40}} 秒。\customlabel{ntpc-93-a40}{10}
-\item \label{ntpc-93-p41} 在樹狀結構 (tree) 中，假設每個節點 (node) 都有 k 個子節點的連結 (link)，我們稱這種樹為 k-ary tree。假設 k-ary tre 中每一個節點都可存放一筆資料。若需利用此種樹存放 $k^5$ 筆資料，則從根 (root) 節點算起為第一層，根節點的子節點則為第二層，以此類推，此樹最少需建至第 \underlineblank{\ref{ntpc-93-p41}} 層 (level) 才能存放所有的資料。\customlabel{ntpc-93-a41}{6}
-\item \label{ntpc-93-p42} 利用下列的演算法追蹤 (traverse) 右下方的二元樹 (binary tree) T 中的節點 (node) 並列印出來，請問其節點資料 A、B、C、D、E、$+$、$-$、$*$、$/$ 印出的順序為 \underlineblank{\ref{ntpc-93-p42}}。\customlabel{ntpc-93-a42}{$A*B-C+D/E$}
-\begin{figure}[h!]
-  \begin{center}
-  \begin{tikzpicture}
-    \SetVertexMath
-    \tikzset{VertexStyle/.style = {
-      shape = circle,%
-      inner sep = 0pt,%
-      outer sep = 0pt,%
-      minimum size = 28pt,%
-      draw}}
-    \Vertex[x=0,y=0]{+}
-    \Vertex[x=0,y=0,LabelOut,Lpos=10,Ldist=.5cm]{T}
-    \Vertex[x=-2,y=-1]{-}
-    \Vertex[x=2,y=-1]{/}
-    \Vertex[x=-3,y=-2.5]{*}
-    \Vertex[x=-1,y=-2.5]{C}
-    \Vertex[x=1,y=-2.5]{D}
-    \Vertex[x=3,y=-2.5]{E}
-    \Vertex[x=-4,y=-4]{A}
-    \Vertex[x=-2,y=-4]{B}
-    \Edge(+)(-)
-    \Edge(+)(/)
-    \Edge(-)(*)
-    \Edge(-)(C)
-    \Edge(/)(D)
-    \Edge(/)(E)
-    \Edge(*)(A)
-    \Edge(*)(B)
-  \end{tikzpicture}
-  \end{center}
-\end{figure}
-\algrenewcommand\algorithmicprocedure{\textbf{Procedure}}
-\algrenewcommand\algorithmicif{\textbf{If}}
-\begin{algorithm}[h]
-  \begin{algorithmic}
-  \Procedure{order}{$T$}
-    \If{$T\neq{0}$}
-      \State \Call{order}{LeftChild($T$)};
-      \State print(DATA($T$));
-      \State \Call{order}{RightChild($T$)};
-    \EndIf
-  \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-上述演算法中，order 為副程式的名字，T 表一個二元樹，每一個 T 中的節點皆包含三個部份，LeftChild、DATA、以及 RightChild。LeftChild 與 RightChild 分別為指向 T 的左子樹 (left subtree) 與右子樹 (right subtree) 的指標 (pointer)，而 data 則是存節點的資料，在本題中分別為 A、B、C、D、E、$+$ 、$-$、$*$、$/$。
-\item \label{ntpc-93-p43} 承上題，若將演算法改為
-\newpage
-\begin{algorithm}[h]
-  \begin{algorithmic}
-  \Procedure{order}{$T$}
-    \If{$T\neq{0}$}
-      \State \Call{order}{RightChild($T$)};
-      \State print(DATA($T$));
-      \State \Call{order}{LeftChild($T$)};
-    \EndIf
-  \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-請問其節點資料印出的順序又為何？ \underlineblank{\ref{ntpc-93-p43}}。\customlabel{ntpc-93-a43}{$E/D+C-B*A$}
+\item \subimport{ntpc-93/}{ntpc-93-p1.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p2.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p3.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p4.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p5.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p6.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p7.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p8.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p9.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p10.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p11.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p12.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p13.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p14.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p15.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p16.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p17.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p18.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p19.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p20.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p21.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p22.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p23.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p24.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p25.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p26.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p27.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p28.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p29.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p30.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p31.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p32.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p33.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p34.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p35.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p36.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p37.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p38.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p39.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p40.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p41.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p42.tex}
+\item \subimport{ntpc-93/}{ntpc-93-p43.tex}
 \end{enumerate}
 
 \newpage

@@ -47,6 +47,11 @@
 \newlist{optionlist}{enumerate}{1}
 \setlist[optionlist]{label=(\Alph*),before=\raggedright}
 \renewcommand{\thelstnumber}{\arabic{lstnumber}0}
+\makeatletter
+\newcommand{\customlabel}[2]{%
+\protected@write \@auxout {}{\string \newlabel {#1}{{#2}{}}}}
+\makeatother
+\newcommand{\underlineblank}[1]{\underline{\hspace{0.4cm}{({#1})}\hspace{0.4cm}}}
 
 %% === 設定 C++ 格式 ===
 %\lstset{
