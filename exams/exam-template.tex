@@ -1,0 +1,106 @@
+\documentclass[12pt,a4paper]{report}
+
+%% === CJK 套件 ===
+\usepackage{CJK,CJKnumb}                     % 中文套件
+%% === AMS 標準套件 ===
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % 數學符號
+%% === 章節內容 ===
+\usepackage{titletoc,titlesec}               % titletoc 目錄修改套件, titlesec 美化章節標題套件
+\usepackage{imakeidx}                        % 索引
+\usepackage{enumitem}
+%% ===  ===
+\usepackage[chapter]{algorithm}              % 演算法套件
+\usepackage[noend]{algpseudocode}            % pseudocode 套件
+\usepackage{listings}                        % 程式碼
+%% === TikZ 套件 ===
+\usepackage{tikz,tkz-graph,tkz-berge}        % 繪圖
+
+%\linespread{1.24}
+
+%% === 設定頁面格式 ===
+%\hoffset         = 10pt                      % 水平位移，預設為 0pt
+\voffset         = -15pt                     % 垂直位移，預設為 0pt
+\oddsidemargin   = 0pt                       % 預設為 31pt
+%\topmargin       = 20pt                      % 預設為 20pt
+%\headheight      = 12pt                      % header 的高度，預設為 12pt
+%\headsep         = 25pt                      % header 和 body 的距離，預設為 25pt
+\textheight      = 620pt                     % body 內文部分的高度，預設為 592pt
+\textwidth       = 450pt                     % body 內文部分的寬度，預設為 390pt
+%\marginparsep    = 10pt                      % margin note 和 body 的距離，預設為 10pt
+%\marginparwidth  = 35pt                      % margin note 的寬度，預設為 35pt
+%\footskip        = 30pt                      % footer 高度 + footer 和 body 的距離，預設為 30pt
+
+\newlist{optionlist}{enumerate}{1}
+\setlist[optionlist]{label=(\Alph*),before=\raggedright}
+\makeatletter
+\newcommand{\customlabel}[2]{%
+\protected@write \@auxout {}{\string \newlabel {#1}{{#2}{}}}}
+\makeatother
+\newcommand{\underlineblank}[1]{\underline{\hspace{0.4cm}{({#1})}\hspace{0.4cm}}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bkai}
+
+%% === 常用的指令，替換成中文 ===
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\contentsname}{目~錄~}
+\renewcommand{\listfigurename}{插~圖~目~錄}
+\renewcommand{\listtablename}{表~格~目~錄}
+\renewcommand{\appendixname}{附~錄}
+%\renewcommand{\refname}{參~考~資~料}    % article
+\renewcommand{\bibname}{參~考~文~獻}     % book
+\renewcommand{\indexname}{索~引}
+\renewcommand{\today}{\number\year~年~\number\month~月~\number\day~日}
+%\newcommand{\zhtoday}{\CJKdigits{\the\year}年\CJKnumber{\the\month}月\CJKnumber{\the\day}日}
+
+\title{九十二學年度台灣省高中資訊學科能力競賽\\(三重高中賽區)}
+\date{}
+\maketitle
+
+\begin{enumerate}
+\item ${(10101101)}_2$ 的十進位表示法為
+  \begin{optionlist}
+  \item 137
+  \item 173
+  \item 189
+  \item 254
+  \end{optionlist}
+  Ans:B
+\end{enumerate}
+
+\newpage
+
+\section*{參考答案}
+
+\begin{table}[t]
+  \center
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  題號 & 答案 & 題號 & 答案 & 題號 & 答案 & 題號 & 答案 & 題號 & 答案\\
+  \hline\hline
+  \textbf{1}  & & \textbf{2}  & & \textbf{3}  & & \textbf{4}  & & \textbf{5}  & \\
+  \hline
+  \textbf{6}  & & \textbf{7}  & & \textbf{8}  & & \textbf{9}  & & \textbf{10} & \\
+  \hline
+  \textbf{11} & & \textbf{12} & & \textbf{13} & & \textbf{14} & & \textbf{15} & \\
+  \hline
+  \textbf{16} & & \textbf{17} & & \textbf{18} & & \textbf{19} & & \textbf{20} & \\
+  \hline
+  \textbf{21} & & \textbf{22} & & \textbf{23} & & \textbf{24} & & \textbf{25} & \\
+  \hline
+  \textbf{26} & & \textbf{27} & & \textbf{28} & & \textbf{29} & & \textbf{30} & \\
+  \hline
+  \textbf{31} & & \textbf{32} & & \textbf{33} & & \textbf{34} & & \textbf{35} & \\
+  \hline
+  \textbf{36} & & \textbf{37} & & \textbf{38} & & \textbf{39} & & \textbf{40} & \\
+  \hline
+  \textbf{41} & & \textbf{42} & & \textbf{43} & & \textbf{44} & & \textbf{45} & \\
+  \hline
+  \textbf{46} & & \textbf{47} & & \textbf{48} & & \textbf{49} & & \textbf{50} & \\
+  \hline
+  \end{tabular}
+\end{table}
+
+\end{CJK}
+\end{document}

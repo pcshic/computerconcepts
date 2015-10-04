@@ -1,19 +1,20 @@
 \documentclass[12pt,a4paper,oneside]{book}
-\def \allfiles {}
+\def\allfiles{}
 
-\input{./book/preample.tex}
+\input{./book/preamble}
 
 \begin{document}
 \begin{CJK}{UTF8}{bkai}
 
-\input{./book/document-config.tex}
+\subimport{book/}{document-config.tex}
 
 \title{Computer Concepts\\計算機概論}
 \author{許胖}
 \maketitle
 \tableofcontents
 
-\input{./book/01-introductions.tex}
+\subimport{book/}{01-introductions.tex}
+\subimport{exams/ntpc-92/}{ntpc-92-p1.tex}
 
 \clearpage
 \end{CJK}
